@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ariyo.in - Do You Know?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+        }
+
+        .logo {
+            font-size: 120px;
+            font-weight: 800;
+            letter-spacing: 8px;
+            text-transform: lowercase;
+            background: linear-gradient(90deg, #fff, #ffd700, #fff, #ff6b9d);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shine 3s linear infinite;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 80px rgba(255,255,255,0.5);
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        .tagline {
+            font-size: 28px;
+            font-weight: 300;
+            margin-top: 20px;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .domain-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            margin-top: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* About Section */
+        .about-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 60px 50px;
+            margin: 60px auto;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .about-content {
+            font-size: 20px;
+            line-height: 1.8;
+            text-align: center;
+            font-weight: 300;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .highlight {
+            font-weight: 600;
+            background: linear-gradient(90deg, #ffd700, #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Owners Section */
+        .owners-section {
+            margin: 80px auto;
+        }
+
+        .owners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .owner-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .owner-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
+        }
+
+        .owner-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            border: 5px solid rgba(255, 255, 255, 0.4);
+            background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            overflow: hidden;
+        }
+
+        .owner-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .owner-name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .owner-description {
+            font-size: 16px;
+            line-height: 1.6;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Fun Facts Section */
+        .facts-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 60px 50px;
+            margin: 60px auto;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .fact-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .fact-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+
+        .fact-text {
+            font-size: 16px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 70px;
+                letter-spacing: 4px;
+            }
+
+            .tagline {
+                font-size: 20px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .about-content {
+                font-size: 18px;
+            }
+
+            .about-section, .facts-section {
+                padding: 40px 30px;
+            }
+
+            .owner-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="logo">ariyo.in</div>
+            <div class="tagline">അറിയോ? • Do You Know?</div>
+            <div class="domain-badge">Premium 5-Letter Domain</div>
+        </div>
+
+        <!-- About Section -->
+        <div class="about-section">
+            <h2 class="section-title">About Ariyo.in</h2>
+            <div class="about-content">
+                <p>Welcome to <span class="highlight">ariyo.in</span> – a domain as unique as its meaning. In Malayalam, one of India's classical languages, "അറിയോ" (ariyo) translates to <span class="highlight">"Do you know?"</span> – a question that sparks curiosity and knowledge.</p>
+                <br>
+                <p>This isn't just any domain. It's a <span class="highlight">premium five-letter domain</span>, a rare digital asset that combines brevity with cultural significance. Short, memorable, and meaningful – the perfect foundation for something extraordinary.</p>
+            </div>
+        </div>
+
+        <!-- Owners Section -->
+        <div class="owners-section">
+            <h2 class="section-title">Meet the Owners</h2>
+            <div class="owners-grid">
+                <div class="owner-card">
+                    <div class="owner-image">
+                        <img src="" alt="Owner 1" style="display: none;">
+                    </div>
+                    <div class="owner-name">Owner Name 1</div>
+                    <div class="owner-description">
+                        Passionate about technology, innovation, and building meaningful digital experiences. Always curious, always learning.
+                    </div>
+                </div>
+                <div class="owner-card">
+                    <div class="owner-image">
+                        <img src="" alt="Owner 2" style="display: none;">
+                    </div>
+                    <div class="owner-name">Owner Name 2</div>
+                    <div class="owner-description">
+                        Driven by creativity and the power of language. Believes in the intersection of culture and technology.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fun Facts Section -->
+        <div class="facts-section">
+            <h2 class="section-title">Malayalam Magic</h2>
+            <div class="facts-grid">
+                <div class="fact-card">
+                    <div class="fact-title">🎭 Cinema Paradise</div>
+                    <div class="fact-text">
+                        Malayalam cinema, also known as Mollywood, is renowned for its realistic storytelling and has won the most National Film Awards in India for Best Feature Film.
+                    </div>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-title">📜 Ancient Script</div>
+                    <div class="fact-text">
+                        Malayalam is one of the 22 scheduled languages of India and has one of the longest words in any language – "ഏഴുമാപ്പിള്ളക്കണക്കിന്" (ezhumappillakkanakkin).
+                    </div>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-title">🏆 Literary Legacy</div>
+                    <div class="fact-text">
+                        Kerala has the highest literacy rate in India at 96.2%, and Malayalam literature has a rich tradition spanning over a thousand years with unique poetic forms.
+                    </div>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-title">🎬 Global Recognition</div>
+                    <div class="fact-text">
+                        Malayalam films have gained international acclaim at prestigious festivals like Cannes, with directors like Adoor Gopalakrishnan and films like "Jallikattu" representing India at the Oscars.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
