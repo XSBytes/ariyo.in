@@ -202,6 +202,40 @@
             color: rgba(255, 255, 255, 0.9);
         }
 
+        /* Products Section */
+        .products-section {
+            background: rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 50px 30px;
+            margin: 40px auto;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            align-items: start;
+        }
+        .product-owner {
+            text-align: left;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .product-list { margin-top: 20px; }
+        .product-card {
+            padding: 18px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            margin-bottom: 12px;
+        }
+        .product-title { font-size: 18px; font-weight:700; color:#ffd700; }
+        .product-desc { font-size:14px; color: rgba(255,255,255,0.9); margin-top:6px; }
+        .product-link { text-decoration: none; color: inherit; display:block; transition: transform 0.2s ease; }
+        .product-link:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.35); }
+
         /* Fun Facts Section */
         .facts-section {
             background: rgba(255, 255, 255, 0.1);
@@ -266,6 +300,11 @@
                 width: 150px;
                 height: 150px;
             }
+
+            /* Responsive adjustments for products */
+            .products-section { padding: 30px 20px; }
+            .product-owner { text-align: center; }
+            .product-title { font-size: 16px; }
         }
     </style>
 </head>
@@ -294,20 +333,45 @@
             <div class="owners-grid">
                 <div class="owner-card">
                     <div class="owner-image">
-                        <img src="./main.jpg" alt="Owner 1">
+                        <img src="./main2.jpg" alt="Owner 1">
                     </div>
-                    <div class="owner-name">Owner Name 1</div>
+                    <div class="owner-name">Shaheen</div>
                     <div class="owner-description">
                         Passionate about technology, innovation, and building meaningful digital experiences. Always curious, always learning.
                     </div>
                 </div>
                 <div class="owner-card">
                     <div class="owner-image">
-                        <img src="./main2.jpg" alt="Owner 2">
+                        <img src="./main.jpg" alt="Owner 2">
                     </div>
-                    <div class="owner-name">Owner Name 2</div>
+                    <div class="owner-name">Christina</div>
                     <div class="owner-description">
                         Driven by creativity and the power of language. Believes in the intersection of culture and technology.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products / Productions Section -->
+        <div class="products-section">
+            <h2 class="section-title">Products &amp; Productions</h2>
+            <div class="products-grid">
+                <div class="product-owner">
+                    <h3 class="owner-name">Shaheen</h3>
+                    <div class="product-list">
+                        <div class="product-card">
+                            <div class="product-title">Layered Dreams</div>
+                            <div class="product-desc">Production and product work by Shaheen. More details coming soon.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-owner">
+                    <h3 class="owner-name">Christina</h3>
+                    <div class="product-list">
+                        <a class="product-card product-link" href="https://flametofable.ariyo.in/" target="_blank" rel="noopener noreferrer">
+                            <div class="product-title">Flame To Fable</div>
+                            <div class="product-desc">A creative project by Christina. Click to visit.</div>
+                        </a>
                     </div>
                 </div>
             </div>
