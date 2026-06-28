@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ariyo.in - Do You Know?</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
     <style>
+        :root {
+            --bg:      #EDE8DF;
+            --text:    #1C1714;
+            --muted:   #7A6F62;
+            --ghost:   rgba(28,23,20,0.06);
+            --divider: rgba(28,23,20,0.12);
+            --num:     rgba(28,23,20,0.07);
+            --remark:  rgba(28,23,20,0.65);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,398 +25,350 @@
         }
 
         body {
-            font-family: 'Sora', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            color: #fff;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Lora', serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        /* Animations */
+        @keyframes fadeInRise {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.72; }
+        }
+
+        .animate-on-load {
+            opacity: 0; /* JS or CSS will trigger */
+            animation: fadeInRise 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) 0.1s forwards;
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.75s ease, transform 0.75s ease;
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+            .animate-on-load, .scroll-reveal {
+                opacity: 1 !important;
+                transform: none !important;
+            }
         }
 
         /* Hero Section */
         .hero {
+            padding: 120px 0 80px 0;
             text-align: center;
-            padding: 100px 20px;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
-            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
         }
 
         .logo {
-            font-size: 120px;
-            font-weight: 800;
-            letter-spacing: 8px;
-            text-transform: lowercase;
-            background: linear-gradient(90deg, #fff, #ffd700, #fff, #ff6b9d);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shine 3s linear infinite;
-            position: relative;
-            z-index: 1;
-            text-shadow: 0 0 80px rgba(255,255,255,0.5);
-        }
-
-        @keyframes shine {
-            to { background-position: 200% center; }
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3.8rem, 9vw, 7rem);
+            font-weight: 300;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            animation: logoPulse 6s ease-in-out infinite 1.4s;
         }
 
         .tagline {
-            font-size: 28px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(0.95rem, 2vw, 1.2rem);
             font-weight: 300;
-            margin-top: 20px;
-            letter-spacing: 2px;
-            position: relative;
-            z-index: 1;
+            font-style: italic;
+            letter-spacing: 0.22em;
+            text-transform: lowercase;
+            margin-top: 1rem;
         }
 
-        .domain-badge {
+        .meta {
+            font-family: 'Lora', serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 2rem;
             display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-size: 18px;
-            margin-top: 30px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            font-weight: 600;
-            position: relative;
-            z-index: 1;
         }
 
-        /* About Section */
-        .about-section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 60px 50px;
-            margin: 60px auto;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        /* Sections */
+        section {
+            padding: 60px 0;
+            border-top: 1px solid var(--divider);
         }
 
         .section-title {
-            font-size: 48px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 50px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.65rem, 4vw, 2.3rem);
+            font-weight: 400;
+            letter-spacing: 0.01em;
+            margin-bottom: 2rem;
         }
 
-        .about-content {
-            font-size: 20px;
-            line-height: 1.8;
-            text-align: center;
-            font-weight: 300;
-            max-width: 900px;
-            margin: 0 auto;
+        p, .remark {
+            font-size: clamp(1rem, 2.2vw, 1.15rem);
+            line-height: 1.75;
+            font-style: italic;
+            color: var(--remark);
+            margin-bottom: 1.5rem;
         }
 
-        .highlight {
-            font-weight: 600;
-            background: linear-gradient(90deg, #ffd700, #ff6b9d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        p:last-child {
+            margin-bottom: 0;
         }
 
-        /* Owners Section */
-        .owners-section {
-            margin: 80px auto;
-        }
-
+        /* Owners */
         .owners-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 40px;
-            margin-top: 50px;
         }
 
-        .owner-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
-            border-radius: 25px;
-            padding: 40px 30px;
-            text-align: center;
-            border: 2px solid rgba(255, 255, 255, 0.25);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .owner-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
+        .owner {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
         .owner-image {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            margin: 0 auto 30px;
-            border: 5px solid rgba(255, 255, 255, 0.4);
-            background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            color: rgba(255,255,255,0.6);
-            overflow: hidden;
-        }
-
-        .owner-image img {
             width: 100%;
-            height: 100%;
+            height: auto;
+            aspect-ratio: 4/5;
             object-fit: cover;
+            background-color: var(--ghost);
         }
 
         .owner-name {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.65rem, 4vw, 2.3rem);
+            font-weight: 400;
+            letter-spacing: 0.01em;
+            margin-bottom: 0.5rem;
         }
 
-        .owner-description {
-            font-size: 16px;
-            line-height: 1.6;
+        /* Lists with Ghost Numbers */
+        .list-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .list-item {
+            position: relative;
+            padding: 20px 0;
+            border-top: 1px solid var(--divider);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .list-item:last-child {
+            /* Remove border-bottom removal since we are using border-top now */
+        }
+
+        .list-item-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.65rem, 4vw, 2.3rem);
+            font-weight: 400;
+            letter-spacing: 0.01em;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .list-item-owner {
+            font-family: 'Lora', serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .list-item-desc {
+            position: relative;
+            z-index: 2;
+            width: 80%;
+        }
+
+        .list-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .ghost-num {
+            position: absolute;
+            right: -1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 11rem;
             font-weight: 300;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--num);
+            line-height: 1;
+            z-index: 1;
+            transition: color 0.4s ease;
+            pointer-events: none;
+            user-select: none;
         }
 
-        /* Products Section */
-        .products-section {
-            background: rgba(255,255,255,0.06);
-            border-radius: 20px;
-            padding: 50px 30px;
-            margin: 40px auto;
-            border: 1px solid rgba(255,255,255,0.15);
-        }
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            align-items: start;
-        }
-        .product-owner {
-            text-align: left;
-            padding: 20px;
-            border-radius: 15px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-        .product-list { margin-top: 20px; }
-        .product-card {
-            padding: 18px;
-            border-radius: 12px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.06);
-            margin-bottom: 12px;
-        }
-        .product-title { font-size: 18px; font-weight:700; color:#ffd700; }
-        .product-desc { font-size:14px; color: rgba(255,255,255,0.9); margin-top:6px; }
-        .product-link { text-decoration: none; color: inherit; display:block; transition: transform 0.2s ease; }
-        .product-link:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.35); }
-
-        /* Fun Facts Section */
-        .facts-section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 60px 50px;
-            margin: 60px auto;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+        .list-link:hover .ghost-num,
+        .list-item:hover .ghost-num {
+            color: rgba(28,23,20,0.12);
         }
 
-        .facts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+        .scroll-indicator {
+            text-align: center;
+            margin-top: 60px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--muted);
+            opacity: 0.7;
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 0;
+            text-align: center;
+            border-top: 1px solid var(--divider);
             margin-top: 40px;
         }
 
-        .fact-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .fact-title {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #ffd700;
-        }
-
-        .fact-text {
-            font-size: 16px;
-            line-height: 1.6;
+        .footer-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
             font-weight: 300;
+            font-style: italic;
+            color: var(--muted);
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .logo {
-                font-size: 70px;
-                letter-spacing: 4px;
+            .ghost-num {
+                font-size: 6rem;
+                right: -0.5rem;
             }
-
-            .tagline {
-                font-size: 20px;
-            }
-
-            .section-title {
-                font-size: 36px;
-            }
-
-            .about-content {
-                font-size: 18px;
-            }
-
-            .about-section, .facts-section {
-                padding: 40px 30px;
-            }
-
-            .owner-image {
-                width: 150px;
-                height: 150px;
-            }
-
-            /* Responsive adjustments for products */
-            .products-section { padding: 30px 20px; }
-            .product-owner { text-align: center; }
-            .product-title { font-size: 16px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Hero Section -->
-        <div class="hero">
-            <div class="logo">ariyo.in</div>
-            <div class="tagline">അറിയോ? • Do You Know?</div>
-            <div class="domain-badge">Premium 5-Letter Domain</div>
+        <div class="hero animate-on-load">
+            <h1 class="logo">ariyo.in</h1>
+            <div class="tagline">അറിയോ? &mdash; do you know?</div>
+            <div class="meta">premium five-letter domain</div>
+            <div class="scroll-indicator">&#8595;</div>
         </div>
 
         <!-- About Section -->
-        <div class="about-section">
-            <h2 class="section-title">About Ariyo.in</h2>
-            <div class="about-content">
-                <p>Welcome to <span class="highlight">ariyo.in</span> – a domain as unique as its meaning. In Malayalam, one of India's classical languages, "അറിയോ" (ariyo) translates to <span class="highlight">"Do you know?"</span> – a question that sparks curiosity and knowledge.</p>
-                <br>
-                <p>This isn't just any domain. It's a <span class="highlight">premium five-letter domain</span>, a rare digital asset that combines brevity with cultural significance. Short, memorable, and meaningful – the perfect foundation for something extraordinary.</p>
-            </div>
-        </div>
+        <section class="scroll-reveal">
+            <h2 class="section-title">About</h2>
+            <p>Welcome to ariyo.in &mdash; a domain as unique as its meaning. In Malayalam, one of India's classical languages, "അറിയോ" (ariyo) translates to "do you know?" &mdash; a question that sparks curiosity and knowledge.</p>
+            <p>This isn't just any domain. It's a premium five-letter domain, a rare digital asset that combines brevity with cultural significance. Short, memorable, and meaningful &mdash; the perfect foundation for something extraordinary.</p>
+            <div class="scroll-indicator">&#8595;</div>
+        </section>
 
         <!-- Owners Section -->
-        <div class="owners-section">
-            <h2 class="section-title">Meet the Owners</h2>
+        <section>
+            <h2 class="section-title scroll-reveal">Founders</h2>
             <div class="owners-grid">
-                <div class="owner-card">
-                    <div class="owner-image">
-                        <img src="./main2.jpg" alt="Owner 1">
-                    </div>
-                    <div class="owner-name">Shaheen</div>
-                    <div class="owner-description">
-                        Passionate about technology, innovation, and building meaningful digital experiences. Always curious, always learning.
+                <div class="owner scroll-reveal">
+                    <img src="./main2.jpg" alt="Shaheen" class="owner-image">
+                    <div>
+                        <h3 class="owner-name">Shaheen</h3>
+                        <p class="remark">Passionate about technology, innovation, and building meaningful digital experiences. Always curious, always learning.</p>
                     </div>
                 </div>
-                <div class="owner-card">
-                    <div class="owner-image">
-                        <img src="./main.jpg" alt="Owner 2">
-                    </div>
-                    <div class="owner-name">Christina</div>
-                    <div class="owner-description">
-                        Driven by creativity and the power of language. Believes in the intersection of culture and technology.
+                <div class="owner scroll-reveal">
+                    <img src="./main.jpg" alt="Christina" class="owner-image">
+                    <div>
+                        <h3 class="owner-name">Christina</h3>
+                        <p class="remark">Driven by creativity and the power of language. Believes in the intersection of culture and technology.</p>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="scroll-indicator scroll-reveal">&#8595;</div>
+        </section>
 
         <!-- Products / Productions Section -->
-        <div class="products-section">
-            <h2 class="section-title">Products &amp; Productions</h2>
-            <div class="products-grid">
-                <div class="product-owner">
-                    <h3 class="owner-name">Shaheen</h3>
-                    <div class="product-list">
-                        <a class="product-card product-link" href="https://layereddreams.ariyo.in/" target="_blank" rel="noopener noreferrer">
-                            <div class="product-title">Layered Dreams</div>
-                            <div class="product-desc">Production and product work by Shaheen.</div>
-                        </a>
-                    </div>
-                </div>
-                <div class="product-owner">
-                    <h3 class="owner-name">Christina</h3>
-                    <div class="product-list">
-                        <a class="product-card product-link" href="https://flametofable.ariyo.in/" target="_blank" rel="noopener noreferrer">
-                            <div class="product-title">Flame To Fable</div>
-                            <div class="product-desc">A creative project by Christina. Click to visit.</div>
-                        </a>
-                    </div>
-                </div>
+        <section>
+            <h2 class="section-title scroll-reveal">Projects</h2>
+            <div class="list-container">
+                <a href="https://layereddreams.ariyo.in/" target="_blank" rel="noopener noreferrer" class="list-item list-link scroll-reveal">
+                    <div class="ghost-num">01</div>
+                    <div class="list-item-owner">shaheen</div>
+                    <h3 class="list-item-title">Layered Dreams &#8599;</h3>
+                    <p class="remark list-item-desc">Production and product work by Shaheen.</p>
+                </a>
+                <a href="https://flametofable.ariyo.in/" target="_blank" rel="noopener noreferrer" class="list-item list-link scroll-reveal">
+                    <div class="ghost-num">02</div>
+                    <div class="list-item-owner">christina</div>
+                    <h3 class="list-item-title">Flame To Fable &#8599;</h3>
+                    <p class="remark list-item-desc">A creative project by Christina. Click to visit.</p>
+                </a>
             </div>
-        </div>
+            <div class="scroll-indicator scroll-reveal">&#8595;</div>
+        </section>
 
-        <!-- Fun Facts Section -->
-        <div class="facts-section">
-            <h2 class="section-title">Malayalam Magic</h2>
-            <div class="facts-grid">
-                <div class="fact-card">
-                    <div class="fact-title">🎭 Cinema Paradise</div>
-                    <div class="fact-text">
-                        Malayalam cinema, also known as Mollywood, is renowned for its realistic storytelling and has won the most National Film Awards in India for Best Feature Film.
-                    </div>
-                </div>
-                <div class="fact-card">
-                    <div class="fact-title">📜 Ancient Script</div>
-                    <div class="fact-text">
-                        Malayalam is one of the 22 scheduled languages of India and has one of the longest words in any language – "ഏഴുമാപ്പിള്ളക്കണക്കിന്" (ezhumappillakkanakkin).
-                    </div>
-                </div>
-                <div class="fact-card">
-                    <div class="fact-title">🏆 Literary Legacy</div>
-                    <div class="fact-text">
-                        Kerala has the highest literacy rate in India at 96.2%, and Malayalam literature has a rich tradition spanning over a thousand years with unique poetic forms.
-                    </div>
-                </div>
-                <div class="fact-card">
-                    <div class="fact-title">🎬 Global Recognition</div>
-                    <div class="fact-text">
-                        Malayalam films have gained international acclaim at prestigious festivals like Cannes, with directors like Adoor Gopalakrishnan and films like "Jallikattu" representing India at the Oscars.
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        <footer>
+            <div class="footer-text">everything begins with a question.</div>
+        </footer>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.12
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                let delayCounter = 0;
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, delayCounter * 80); // Stagger by 80ms
+                        delayCounter++;
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.scroll-reveal');
+            revealElements.forEach(el => observer.observe(el));
+        });
+    </script>
 </body>
 </html>
